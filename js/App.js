@@ -2,7 +2,7 @@ import Player from './domain/player/Player.js';
 import HtmlPageController from './domain/htmlControl/HtmlPageController.js';
 
 const T_START = document.querySelector('#start');
-const T_LINE = document.querySelector('#buttonLine');
+const T_LINE = document.querySelector('#container');
 
 class App {
   async play() {

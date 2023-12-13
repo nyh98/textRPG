@@ -1,12 +1,10 @@
 class HtmlPageController {
-  #buttonLine;
+  #container;
   #Player;
-  #monsters;
 
-  constructor(buttonLine, player, monsters) {
-    this.#buttonLine = buttonLine;
+  constructor(container, player) {
+    this.#container = container;
     this.#Player = player;
-    this.#monsters = monsters;
   }
 
   gameStart(tag) {
@@ -20,7 +18,8 @@ class HtmlPageController {
     let button = document.createElement('button');
     button.id = id;
     button.appendChild(document.createTextNode(text));
-    this.#buttonLine.append(button);
+    button.addEventListener();
+    this.#container.append(button);
   }
 
   setPlayerStatus() {
