@@ -4,6 +4,10 @@ img {
   -webkit-user-drag: none;
 }
 
+#container {
+  float: left;
+}
+
 button {
   margin: 5px;
 }

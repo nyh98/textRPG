@@ -6,3 +6,5 @@ class Zombie extends Monster {
     return damage;
   }
 }
+
+export default Zombie;
