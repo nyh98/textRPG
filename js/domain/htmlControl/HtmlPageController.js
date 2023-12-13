@@ -1,11 +1,9 @@
 class HtmlPageController {
-  #buttonLine;
-  #userDisplay;
+  container;
   #Player;
 
-  constructor(buttonLine, userDisplay, player) {
-    this.#buttonLine = buttonLine;
-    this.#userDisplay = userDisplay;
+  constructor(container, player) {
+    this.container = container;
     this.#Player = player;
   }
 
@@ -16,12 +14,11 @@ class HtmlPageController {
     this.setPlayerStatus();
   }
 
-  setButton(text, id) {
+  setButton(text) {
     let button = document.createElement('button');
-    button.id = id;
     button.appendChild(document.createTextNode(text));
-    // button.addEventListener();
-    this.#buttonLine.append(button);
+    button.addEventListener('mouseup', this.setBattlePage);
+    document.querySelector('#buttonLine').append(button);
   }
 
   setPlayerStatus() {
@@ -31,6 +28,17 @@ class HtmlPageController {
 
     document.querySelector('#userDisplay').append(status);
   }
+
+  async getBattlePage() {
+    return await (await fetch('../../../html/battleSlime.html')).text();
+  }
+
+  setBattlePage = async () => {
+    let battlePage = await this.getBattlePage();
+
+    document.querySelector('#container').innerHTML = battlePage;
+    this.setPlayerStatus();
+  };
 }
 
 export default HtmlPageController;
