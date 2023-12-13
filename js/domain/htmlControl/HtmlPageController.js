@@ -1,9 +1,11 @@
 class HtmlPageController {
-  #container;
+  #buttonLine;
+  #userDisplay;
   #Player;
 
-  constructor(container, player) {
-    this.#container = container;
+  constructor(buttonLine, userDisplay, player) {
+    this.#buttonLine = buttonLine;
+    this.#userDisplay = userDisplay;
     this.#Player = player;
   }
 
@@ -18,8 +20,8 @@ class HtmlPageController {
     let button = document.createElement('button');
     button.id = id;
     button.appendChild(document.createTextNode(text));
-    button.addEventListener();
-    this.#container.append(button);
+    // button.addEventListener();
+    this.#buttonLine.append(button);
   }
 
   setPlayerStatus() {
