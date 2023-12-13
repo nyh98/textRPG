@@ -8,7 +8,6 @@ import Boss from './domain/monster/Boss.js';
 const T_START = document.querySelector('#start');
 const T_CONTAINER = document.querySelector('#container');
 
-console.log(w);
 class App {
   async play() {
     const PLAYER = new Player();
@@ -21,7 +20,7 @@ class App {
       new Boss('boss', 5, 130, 30, 20, null)
     );
 
-    const TAG_CONTROL = new HtmlPageController(T_CONTAINER, PLAYER);
+    const TAG_CONTROL = new HtmlPageController(T_CONTAINER, PLAYER, MONSTERS);
     TAG_CONTROL.gameStart(T_START);
   }
 }

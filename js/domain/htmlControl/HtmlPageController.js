@@ -1,3 +1,5 @@
+import BattleController from './BattleController.js';
+
 const URL = {
   battlePage: '../../../html/battle.html',
   pickMonsterPage: '../../../html/pickMonster.html',
@@ -7,10 +9,12 @@ const URL = {
 class HtmlPageController {
   container;
   Player;
+  monsters;
 
-  constructor(container, player) {
+  constructor(container, player, monsters) {
     this.container = container;
     this.Player = player;
+    this.monsters = monsters;
   }
 
   gameStart(tag) {
@@ -40,9 +44,13 @@ class HtmlPageController {
     let battle = Array.from(document.querySelectorAll('.goBattle'));
     battle.forEach((button) => {
       button.addEventListener('mouseup', async (e) => {
-        console.log(e.target.id);
         let page = await this.getPage(URL.battlePage);
         this.container.innerHTML = page;
+        for (let monster of this.monsters) {
+          if (monster.name === e.target.id) {
+            new BattleController(monster, this.Player);
+          }
+        }
       });
     });
   }

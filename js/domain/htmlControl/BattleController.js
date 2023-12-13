@@ -1,10 +1,17 @@
 class BattleController {
-  #monsters;
-  #player;
-  #battleService;
+  monster;
+  player;
 
-  constructor() {}
+  constructor(monster, player) {
+    this.monster = monster;
+    this.player = player;
+    this.setBattlePage();
+  }
+
+  setBattlePage() {
+    document.querySelector('#monsterStatus').innerHTML =
+      this.monster.printStatus();
+  }
 }
 
-// 사용자 <-(상호작용)-> Controller <-> Service (실제 로직) <-(데이터 영구 보관)-> Repository
 export default BattleController;
