@@ -22,6 +22,7 @@ class BattleController {
     );
     this.setBattlePage();
     this.setAttackEvent();
+    this.setRunAwayEvent();
   }
 
   setBattlePage() {
@@ -53,6 +54,12 @@ class BattleController {
       if (this.validateEnding()) return;
       this.validateBattleEnd();
       this.setPlayerStatus();
+    });
+  }
+
+  setRunAwayEvent() {
+    document.querySelector('#runAway').addEventListener('mouseup', () => {
+      this.HtmlPageController.setPage(URL.pickMonsterPage)();
     });
   }
 
