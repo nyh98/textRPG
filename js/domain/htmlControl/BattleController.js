@@ -56,8 +56,8 @@ class BattleController {
     this.setBattlePage();
   }
 
-  printBattleLog(log) {
-    document.querySelector('#battleLog').innerHTML += `${log}<br>`;
+  printBattleLog(logMessage) {
+    document.querySelector('#battleLog').innerHTML += `${logMessage}<br>`;
   }
 
   setAttackEvent() {

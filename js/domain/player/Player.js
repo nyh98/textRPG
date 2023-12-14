@@ -33,7 +33,7 @@ class Player {
   }
 
   heals() {
-    let heal = 20 + (this.#LV - 1) * 5;
+    let heal = 10 + (this.#LV - 1) * 5;
     let w = this.#HP + heal;
     if (w > this.#MAX_HP) {
       this.#HP = this.#MAX_HP;
@@ -47,7 +47,7 @@ class Player {
       this.#MAX_HP
     }<br>공격력 : ${this.#ATK}<br>방어력 : ${this.#DEF}<br>경험치 : ${
       this.#EXP
-    } / ${this.#MAX_EXP}`;
+    } / ${this.#MAX_EXP}<br>회복스킬 회복력 : ${10 + (this.#LV - 1) * 5}`;
   }
 
   validateLevelUp(exp) {
