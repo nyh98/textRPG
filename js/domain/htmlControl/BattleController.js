@@ -50,11 +50,12 @@ class BattleController {
       this.player.validateLevelUp(this.monster.validateDeath());
       this.setPlayerStatus();
       this.validateBattleEnd();
+      this.setPlayerStatus();
     });
   }
 
   validateBattleEnd() {
-    if (this.monster.validateDeath()) {
+    if (this.monster.validateDeath() || this.player.validateDeath()) {
       this.HtmlPageController.setPage(URL.pickMonsterPage)();
       this.monster.resetHP();
     }

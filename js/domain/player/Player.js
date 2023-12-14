@@ -26,7 +26,6 @@ class Player {
     if (resultDamage >= 0) {
       this.#HP -= resultDamage;
     }
-    this.validateDeath();
   }
 
   heals() {
@@ -69,6 +68,7 @@ class Player {
       this.#EXP = 0;
       this.#MAX_EXP = this.#LV * 10;
       this.#MAX_HP = 100 + (this.#LV - 1) * 20;
+      return true;
     }
   }
 }
