@@ -4,7 +4,6 @@ class Boss extends Monster {
   turnCount = 0;
 
   attack() {
-    console.log(this.name, this.ATK, this.test);
     this.turnCount += 1;
     if (this.turnCount % 3 === 0) {
       return this.annoyingSkill();
@@ -27,7 +26,7 @@ class Boss extends Monster {
 
   validateDeath() {
     if (this.HP <= 0) {
-      alert('세상에 평화가 찾아왔다');
+      return 1;
     }
     return 0;
   }

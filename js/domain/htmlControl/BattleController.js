@@ -65,9 +65,9 @@ class BattleController {
     document.querySelector('#attack').addEventListener('mouseup', () => {
       this.attackTo(this.monster, this.player);
       this.attackTo(this.player, this.monster);
+      if (this.validateEnding()) return;
       this.player.validateLevelUp(this.monster.validateDeath());
       this.setPlayerStatus();
-      if (this.validateEnding()) return;
       this.validateBattleEnd();
       this.setPlayerStatus();
     });
