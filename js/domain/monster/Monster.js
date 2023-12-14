@@ -16,6 +16,10 @@ class Monster {
     this.initialHP = HP;
   }
 
+  getName() {
+    return this.name;
+  }
+
   attack() {
     return this.ATK;
   }

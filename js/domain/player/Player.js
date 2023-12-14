@@ -17,6 +17,10 @@ class Player {
     this.#MAX_HP = 100 + (this.#LV - 1) * 20;
   }
 
+  getName() {
+    return '주인공';
+  }
+
   attack() {
     return this.#ATK;
   }
@@ -29,10 +33,11 @@ class Player {
   }
 
   heals() {
-    let firstHeal = 20;
-    let heal = firstHeal + this.#LV * 5;
-    if (this.#HP + 20 > this.#MAX_HP) {
+    let heal = 20 + (this.#LV - 1) * 5;
+    let w = this.#HP + heal;
+    if (w > this.#MAX_HP) {
       this.#HP = this.#MAX_HP;
+      return;
     }
     this.#HP += heal;
   }

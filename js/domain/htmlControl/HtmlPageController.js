@@ -37,10 +37,6 @@ class HtmlPageController {
     status.innerHTML = this.player.printStatus();
   }
 
-  async getPage(url) {
-    return await (await fetch(url)).text();
-  }
-
   pickMonsterPageAddEvent() {
     let battle = Array.from(document.querySelectorAll('.goBattle'));
     battle.forEach((button) => {
@@ -54,6 +50,10 @@ class HtmlPageController {
         }
       });
     });
+  }
+
+  async getPage(url) {
+    return await (await fetch(url)).text();
   }
 
   setPage = (url) => async () => {

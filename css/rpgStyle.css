@@ -16,3 +16,8 @@ button {
   float: right;
   margin-right: 50%;
 }
+
+#battleLog {
+  height: 100px;
+  overflow: auto;
+}

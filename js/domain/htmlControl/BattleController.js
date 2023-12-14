@@ -20,9 +20,15 @@ class BattleController {
       this.player,
       this.monsters
     );
+    this.setBattleLogic();
+  }
+
+  setBattleLogic() {
     this.setBattlePage();
+    this.resetBattleLog();
     this.setAttackEvent();
     this.setRunAwayEvent();
+    this.setSkillEvent();
   }
 
   setBattlePage() {
@@ -40,9 +46,18 @@ class BattleController {
     status.innerHTML = this.player.printStatus();
   }
 
+  resetBattleLog() {
+    document.querySelector('#battleLog').innerHTML = '';
+  }
+
   attackTo(defenseTarget, attackTarget) {
     defenseTarget.setHP(attackTarget.attack());
+    this.printBattleLog(`${attackTarget.getName()}의 공격!`);
     this.setBattlePage();
+  }
+
+  printBattleLog(log) {
+    document.querySelector('#battleLog').innerHTML += `${log}<br>`;
   }
 
   setAttackEvent() {
@@ -54,6 +69,15 @@ class BattleController {
       if (this.validateEnding()) return;
       this.validateBattleEnd();
       this.setPlayerStatus();
+    });
+  }
+
+  setSkillEvent() {
+    document.querySelector('#skill').addEventListener('mouseup', () => {
+      this.player.heals();
+      this.setPlayerStatus();
+      this.printBattleLog(`${this.player.getName()} 회복스킬 사용`);
+      this.attackTo(this.player, this.monster);
     });
   }
 
