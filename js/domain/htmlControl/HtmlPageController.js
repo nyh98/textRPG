@@ -4,6 +4,7 @@ const URL = {
   battlePage: '../../../html/battle.html',
   pickMonsterPage: '../../../html/pickMonster.html',
   dungeonIMG: '../../../img/Dungeon.png',
+  endingPage: '../../../html/ending.html',
 };
 
 class HtmlPageController {
