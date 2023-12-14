@@ -8,12 +8,12 @@ const URL = {
 
 class HtmlPageController {
   container;
-  Player;
+  player;
   monsters;
 
   constructor(container, player, monsters) {
     this.container = container;
-    this.Player = player;
+    this.player = player;
     this.monsters = monsters;
   }
 
@@ -33,14 +33,14 @@ class HtmlPageController {
 
   setPlayerStatus() {
     let status = document.querySelector('#playerStatus');
-    status.innerHTML = this.Player.printStatus();
+    status.innerHTML = this.player.printStatus();
   }
 
   async getPage(url) {
     return await (await fetch(url)).text();
   }
 
-  pickMonsterAddEvent() {
+  pickMonsterPageAddEvent() {
     let battle = Array.from(document.querySelectorAll('.goBattle'));
     battle.forEach((button) => {
       button.addEventListener('mouseup', async (e) => {
@@ -48,7 +48,7 @@ class HtmlPageController {
         this.container.innerHTML = page;
         for (let monster of this.monsters) {
           if (monster.name === e.target.id) {
-            new BattleController(monster, this.Player);
+            new BattleController(monster, this.player, this.monsters);
           }
         }
       });
@@ -59,7 +59,9 @@ class HtmlPageController {
     let Page = await this.getPage(url);
 
     this.container.innerHTML = Page;
-    this.pickMonsterAddEvent();
+    if (url === URL.pickMonsterPage) {
+      this.pickMonsterPageAddEvent();
+    }
   };
 }
 

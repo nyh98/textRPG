@@ -17,7 +17,7 @@ class App {
       new Monster('skeleton', 2, 70, 15, 5, 8),
       new Zombie('zombie', 3, 90, 20, 10, 11),
       new Host('host', 4, 110, 25, 15, 14),
-      new Boss('boss', 5, 130, 30, 20, null)
+      new Boss('boss', 5, 130, 30, 20, 99)
     );
 
     const TAG_CONTROL = new HtmlPageController(T_CONTAINER, PLAYER, MONSTERS);

@@ -24,8 +24,9 @@ class Player {
   setHP(damage) {
     let resultDamage = damage - this.#DEF;
     if (resultDamage >= 0) {
-      this.#DEF -= resultDamage;
+      this.#HP -= resultDamage;
     }
+    this.validateDeath();
   }
 
   heals() {
@@ -45,12 +46,14 @@ class Player {
     } / ${this.#MAX_EXP}`;
   }
 
-  validateLevelUp() {
+  validateLevelUp(exp) {
+    this.#EXP += exp;
     if (this.#EXP >= this.#MAX_EXP) {
       this.#LV += 1;
       this.#MAX_HP += 20;
+      this.#HP = this.#MAX_HP;
       this.#ATK += 10;
-      this.#DEF += 5;
+      this.#DEF += 2;
       this.#MAX_EXP += 10;
       this.#EXP = 0;
     }

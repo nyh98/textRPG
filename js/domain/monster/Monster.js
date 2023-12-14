@@ -13,6 +13,7 @@ class Monster {
     this.ATK = ATK;
     this.DEF = DEF;
     this.EXP = EXP;
+    this.initialHP = HP;
   }
 
   attack() {
@@ -22,7 +23,7 @@ class Monster {
   setHP(damage) {
     let resultDamage = damage - this.DEF;
     if (resultDamage >= 0) {
-      this.DEF -= resultDamage;
+      this.HP -= resultDamage;
     }
   }
 
@@ -30,6 +31,11 @@ class Monster {
     if (this.HP <= 0) {
       return this.EXP;
     }
+    return 0;
+  }
+
+  resetHP() {
+    this.HP = this.initialHP;
   }
 
   printStatus() {
