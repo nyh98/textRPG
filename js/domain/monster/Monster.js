@@ -21,7 +21,6 @@ class Monster {
   }
 
   attack() {
-    console.log(`${this.name}의 ${this.turnCount}`);
     return this.ATK;
   }
 
