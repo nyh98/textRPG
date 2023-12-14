@@ -52,7 +52,8 @@ class BattleController {
 
   attackTo(defenseTarget, attackTarget) {
     defenseTarget.setHP(attackTarget.attack());
-    this.printBattleLog(`${attackTarget.getName()}의 공격!`);
+    let skill = this.validateMonsterSkill(attackTarget);
+    this.printBattleLog(`${attackTarget.getName()}의 ${skill}공격!`);
     this.setBattlePage();
   }
 
@@ -85,6 +86,14 @@ class BattleController {
     document.querySelector('#runAway').addEventListener('mouseup', () => {
       this.HtmlPageController.setPage(URL.pickMonsterPage)();
     });
+  }
+
+  validateMonsterSkill(monster) {
+    let skill =
+      this.monster.turnCount % 3 === 0 && monster === this.monster
+        ? '스킬'
+        : '';
+    return skill;
   }
 
   validateBattleEnd() {

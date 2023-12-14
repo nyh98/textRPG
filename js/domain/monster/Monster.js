@@ -40,6 +40,7 @@ class Monster {
 
   resetHP() {
     this.HP = this.initialHP;
+    this.turnCount = 0;
   }
 
   printStatus() {
