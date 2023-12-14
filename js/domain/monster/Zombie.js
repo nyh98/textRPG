@@ -11,6 +11,11 @@ class Zombie extends Monster {
     return this.ATK;
   }
 
+  resetHP() {
+    this.HP = this.initialHP;
+    this.turnCount = 0;
+  }
+
   squirtBlood() {
     let damage = 30;
     return damage;

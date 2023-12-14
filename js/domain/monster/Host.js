@@ -11,6 +11,11 @@ class Host extends Monster {
     return this.ATK;
   }
 
+  resetHP() {
+    this.HP = this.initialHP;
+    this.turnCount = 0;
+  }
+
   stillDeposit() {
     let damage = 40;
     return damage;

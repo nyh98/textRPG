@@ -21,6 +21,7 @@ class Monster {
   }
 
   attack() {
+    console.log(`${this.name}의 ${this.turnCount}`);
     return this.ATK;
   }
 
@@ -40,7 +41,6 @@ class Monster {
 
   resetHP() {
     this.HP = this.initialHP;
-    this.turnCount = 0;
   }
 
   printStatus() {

@@ -16,6 +16,11 @@ class Boss extends Monster {
     return damage;
   }
 
+  resetHP() {
+    this.HP = this.initialHP;
+    this.turnCount = 0;
+  }
+
   setHP(damage) {
     let resultDamage = damage - this.DEF;
     if (resultDamage >= 0) {
