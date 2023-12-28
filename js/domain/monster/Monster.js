@@ -5,6 +5,7 @@ class Monster {
   ATK;
   DEF;
   EXP;
+  initialHP;
 
   constructor(name, LV, HP, ATK, DEF, EXP) {
     this.name = name;
