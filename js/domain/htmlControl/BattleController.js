@@ -19,7 +19,7 @@ class BattleController {
     this.setBattleLogic();
   }
 
-  async setBattleLogic() {
+  setBattleLogic() {
     this.setBattlePage();
     this.resetBattleLog();
     this.setAttackEvent();
