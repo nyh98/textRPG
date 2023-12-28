@@ -5,6 +5,7 @@ class BattleController {
   monster;
   player;
   HtmlPageController;
+  flag;
 
   constructor(monster, player, monsters) {
     this.monster = monster;
@@ -14,14 +15,14 @@ class BattleController {
       this.player,
       monsters
     );
+    this.flag = true;
     this.setBattleLogic();
   }
 
-  setBattleLogic() {
-    let flag = true;
+  async setBattleLogic() {
     this.setBattlePage();
     this.resetBattleLog();
-    this.setAttackEvent(flag);
+    this.setAttackEvent();
     this.setRunAwayEvent();
     this.setSkillEvent();
   }
@@ -52,24 +53,29 @@ class BattleController {
     this.setBattlePage();
   }
 
+  attackToPlayer() {
+    let promis = new Promise(resolve => {
+      setTimeout(() => {
+        this.attackTo(this.player, this.monster);
+        resolve(true);
+      }, 1000);
+    });
+    return promis;
+  }
+
   printBattleLog(logMessage) {
     document.querySelector('#battleLog').innerHTML += `${logMessage}<br>`;
   }
 
-  setAttackEvent(flag) {
+  setAttackEvent() {
     document.querySelector('#attack').addEventListener('mouseup', async () => {
-      if (flag) {
-        flag = false;
+      if (this.flag) {
+        this.flag = false;
         this.attackTo(this.monster, this.player);
         this.player.validateLevelUp(this.monster.validateDeath());
+        this.setPlayerStatus();
         if (this.validateBattleEnd() || this.validateEnding()) return;
-        let promis = new Promise(resolve => {
-          setTimeout(() => {
-            this.attackTo(this.player, this.monster);
-            resolve(true);
-          }, 1000);
-        });
-        flag = await promis;
+        this.flag = await this.attackToPlayer();
         this.setPlayerStatus();
         this.validateBattleEnd();
         this.setPlayerStatus();
@@ -78,17 +84,22 @@ class BattleController {
   }
 
   setSkillEvent() {
-    document.querySelector('#skill').addEventListener('mouseup', () => {
-      this.player.heals();
-      this.setPlayerStatus();
-      this.printBattleLog(`${this.player.getName()} 회복스킬 사용`);
-      this.attackTo(this.player, this.monster);
+    document.querySelector('#skill').addEventListener('mouseup', async () => {
+      if (this.flag) {
+        this.flag = false;
+        this.player.heals();
+        this.setPlayerStatus();
+        this.printBattleLog(`${this.player.getName()} 회복스킬 사용`);
+        this.flag = await this.attackToPlayer();
+      }
     });
   }
 
   setRunAwayEvent() {
     document.querySelector('#runAway').addEventListener('mouseup', () => {
-      this.HtmlPageController.setPage(URL.pickMonsterPage)();
+      if (this.flag) {
+        this.HtmlPageController.setPage(URL.pickMonsterPage)();
+      }
     });
   }
 
