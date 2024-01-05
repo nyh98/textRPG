@@ -19,5 +19,6 @@ button {
 
 #battleLog {
   height: 100px;
+  background-color: #bdbebd;
   overflow: auto;
 }
